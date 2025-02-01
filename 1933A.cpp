@@ -9,12 +9,15 @@ int main()
 	std::cin >> t;
 	while (t--)
 	{
-		int a, b, c;
-		std::cin >> a >> b >> c;
-		if (a == b)
-			std::cout << 0 << std::endl;
-		else
-			std::cout << ((std::abs(a - b) + c - 1) / c + 1) / 2 << std::endl;
+		int n;
+		std::cin >> n;
+		int sum = 0;
+		for (int i = 0; i < n; i++) {
+			int x;
+			std::cin >> x;
+			sum += std::abs(x);
+		}
+		std::cout << sum << std::endl;
 	}
 	return 0;
 }

@@ -9,12 +9,9 @@ int main()
 	std::cin >> t;
 	while (t--)
 	{
-		int a, b, c;
-		std::cin >> a >> b >> c;
-		if (a == b)
-			std::cout << 0 << std::endl;
-		else
-			std::cout << ((std::abs(a - b) + c - 1) / c + 1) / 2 << std::endl;
+		int a, b, c, d;
+		std::cin >> a >> b >> c >> d;
+		std::cout << b << " " << c << " " << c << std::endl;
 	}
 	return 0;
 }
