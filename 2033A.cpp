@@ -11,15 +11,10 @@ int main()
 	{
 		int n;
 		std::cin >> n;
-		int ans = -1, res = 1;
-		for (int i = 1; i < n; i++) {
-			if (std::gcd(n, i) + i > ans)
-			{
-				ans = std::gcd(n, i) + i;
-				res = i;
-			}
-		}
-		std::cout << res << std::endl;
+		if (n & 1)
+			std::cout << "Kosuke" << std::endl;
+		else
+			std::cout << "Sakurako" << std::endl;
 	}
 	return 0;
 }

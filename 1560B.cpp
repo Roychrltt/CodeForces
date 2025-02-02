@@ -11,11 +11,11 @@ int main()
 	{
 		int a, b, c;
 		std::cin >> a >> b >> c;
-		if (a > b) std::swap(a, b);
-		double m = (a + b) / 2;
-		int d = c < m ? c + b - a : c - b + a;
-		if (c < 1) std::cout << -1 << std::endl;
-		else std::cout << d << std::endl;
+		if (a < b) std::swap(a, b);
+		if (a - b >= b && 2 * (a - b) >= c)
+			std::cout << (c <= a - b ? c + a - b : c - a + b) << std::endl;
+		else
+			std::cout << -1 << std::endl;
 	}
 	return 0;
 }

@@ -9,17 +9,15 @@ int main()
 	std::cin >> t;
 	while (t--)
 	{
-		int n;
+		long long int n;
 		std::cin >> n;
-		int ans = -1, res = 1;
-		for (int i = 1; i < n; i++) {
-			if (std::gcd(n, i) + i > ans)
-			{
-				ans = std::gcd(n, i) + i;
-				res = i;
-			}
+		long long int tmp = n;
+		long long int count = 1;
+		while (tmp / 10) {
+			count *= 10;
+			tmp /= 10;
 		}
-		std::cout << res << std::endl;
+		std::cout << n - count << std::endl;
 	}
 	return 0;
 }
