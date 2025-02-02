@@ -6,6 +6,7 @@ void solve(void)
 	int prevCount = 0;
 	int x = -1, y = -1, b = -1;
 	std::string s;
+	std::getline(std::cin, s);
 	for (int i = 0; i < 8; i++) {
 		std::getline(std::cin, s);
 		int count = 0;
@@ -29,13 +30,12 @@ void solve(void)
 int main()
 {
 	int t;
-	std::string input;
-	std::getline(std::cin, input);
-	t = std::stoi(input);
+	std::cin >> t;
 	std::cin.ignore();
 
 	while (t--)
 	{
+		std::cin.ignore();
 		solve();
 	}
 	return 0;
