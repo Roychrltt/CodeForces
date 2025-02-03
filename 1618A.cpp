@@ -9,22 +9,11 @@
 
 static void solve(void)
 {
-	int n, k;
-	std::cin >> n >> k;
-	std::vector<std::string> v(n);
-	for (int i = 0; i < n; i++) {
+	std::vector<int> v(7);
+	for (int i = 0; i < 7; i++) {
 		std::cin >> v[i];
 	}
-	std::vector<std::string> ans;
-	for (int i = 0; i < n; i += k) {
-		std::string s = "";
-		for (int j = 0; j < n; j += k) {
-			s += v[i][j];
-		}
-		ans.push_back(s);
-	}
-	for (const auto& str : ans)
-		std::cout << str << std::endl;
+	std::cout << v[0] << " " << v[1] << " " << v[6] - v[0] - v[1] << std::endl;
 }
 
 int main()

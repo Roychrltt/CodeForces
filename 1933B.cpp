@@ -9,22 +9,19 @@
 
 static void solve(void)
 {
-	int n, k;
-	std::cin >> n >> k;
-	std::vector<std::string> v(n);
+	int n;
+	std::cin >> n;
+	std::vector<int> v(n);
+	int sum = 0;
+	bool flag = false;
 	for (int i = 0; i < n; i++) {
 		std::cin >> v[i];
+		sum += v[i];
+		if (v[i] % 3 == 1) flag = true;
 	}
-	std::vector<std::string> ans;
-	for (int i = 0; i < n; i += k) {
-		std::string s = "";
-		for (int j = 0; j < n; j += k) {
-			s += v[i][j];
-		}
-		ans.push_back(s);
-	}
-	for (const auto& str : ans)
-		std::cout << str << std::endl;
+	if (sum % 3 == 0) std::cout << 0 << std::endl;
+	else if ((sum % 3 == 1 && flag) || sum % 3 == 2) std::cout << 1 << std::endl;
+	else std::cout << 2 << std::endl;
 }
 
 int main()

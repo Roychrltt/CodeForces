@@ -9,22 +9,21 @@
 
 static void solve(void)
 {
-	int n, k;
-	std::cin >> n >> k;
-	std::vector<std::string> v(n);
+	int n;
+	std::cin >> n;
+	int prev = 0;
+	bool flag = true;
 	for (int i = 0; i < n; i++) {
-		std::cin >> v[i];
-	}
-	std::vector<std::string> ans;
-	for (int i = 0; i < n; i += k) {
-		std::string s = "";
-		for (int j = 0; j < n; j += k) {
-			s += v[i][j];
+		std::string s;
+		std::cin >> s;
+		int count = 0;
+		for (int j = 0; j < n; j++) {
+			if (s[j] == '1') count++;
 		}
-		ans.push_back(s);
+		if (count && prev && count != prev) flag = false;
+		prev = count;
 	}
-	for (const auto& str : ans)
-		std::cout << str << std::endl;
+	std::cout << (flag ? "SQUARE" : "TRIANGLE") << std::endl;
 }
 
 int main()
