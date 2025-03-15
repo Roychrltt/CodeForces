@@ -10,7 +10,7 @@ static void solve(void)
 	int ans = cur;
 	cur = 1;
 	if (a + b == d - b) cur++;
-	if (e - d ==d - b) cur++;
+	if (e - d == d - b) cur++;
 	ans = std::max(ans, cur);
 	cur = 1;
 	if (a + b == e - d) cur++;
