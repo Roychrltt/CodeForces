@@ -7,13 +7,19 @@ static void solve(void)
 {
 	int n;
 	std::cin >> n;
-	std::string s = std::to_string(n);
-	if (s.find('7') != std::string::npos)
-	{
-		std::cout << 0 << std::endl;
-		return;
-	}
-
+	for (int l = 0; l <= 9; l++) {
+        std::string s = std::to_string(n - l);
+        int md = 0;
+        for (auto c: s) {
+            if (c <= '7') {
+                md = std::max(md, c - '0');
+            }
+        }
+        if (l >= 7 - md) {
+			std::cout << l << std::endl;
+            return;
+        }
+    }
 }
 
 int main()
