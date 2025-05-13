@@ -7,7 +7,45 @@ static void solve(void)
 {
 	int n;
 	std::cin >> n;
-	
+	std::vector<int> v(n);
+	std::unordered_map<int, int> map;
+	for (int i = 0; i < n; i++)
+	{
+		std::cin >> v[i];
+		map[v[i]]++;
+	}
+
+	int len = 0, cur = 0, left = 0, right = -1, debut = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (map[v[i]] == 1)
+		{
+			if (cur++ == 0)
+			{
+				debut = i + 1;
+			}
+		}
+		else
+		{
+
+			if (cur > len)
+			{
+				len = cur;
+				left = debut;
+				right = i;
+			}
+			cur = 0;
+		}
+	}
+	if (cur > len)
+	{
+		left = debut;
+		right = n;
+	}
+	if (right != -1)
+		std::cout << left << " " << right << std::endl;
+	else
+		std::cout << 0 << std::endl;
 }
 
 int main()
