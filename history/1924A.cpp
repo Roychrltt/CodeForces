@@ -9,19 +9,18 @@ static void solve(void)
 	std::cin >> n >> k >> m;
 	std::string s;
 	std::cin >> s;
-	std::vector<int> v(n);
-	for (int i = 0; i < 26; i++)
+	std::vector<int> v(k);
+	for (int i = 0; i < k; i++)
 		v[i] = 1;
 	int cnt = 0, sum = 0;
-	std::string ans;
-	for (int i = 0; i < s.size(); i++)
+	std::string ans = "";
+	for (int i = 0; i < m; i++)
 	{
-		int x = s[i] - 'a';
-		if (--v[x] == 0) cnt++;
-		if (cnt >= 26)
+		if (--v[s[i] - 'a'] == 0) cnt++;
+		if (cnt >= k)
 		{
 			ans += s[i];
-			for (int i = 0; i < 26; i++)
+			for (int i = 0; i < k; i++)
 				v[i] = 1;
 			cnt = 0;
 			sum++;
@@ -34,11 +33,11 @@ static void solve(void)
 		std::cout << "NO" << std::endl;
 		int len = n - ans.size();
 		char c;
-		for (int x : v)
+		for (int i = 0; i < k; i++)
 		{
-			if (x > 1)
+			if (v[i] > 0)
 			{
-				c = 'a' + x;
+				c = 'a' + i;
 				break;
 			}
 		}
