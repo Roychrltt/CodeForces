@@ -14,7 +14,7 @@ static void solve(void)
 	{
 		std::cin >> v[i];
 		if (v[i] == 1) cnt++;
-		if (i > 0 && v[i] == 0 && v[i - 1] == 0)
+		if (ok && i > 0 && v[i] == 0 && v[i - 1] == 0)
 		{
 			std::cout << "YES" << std::endl;
 			ok = false;
