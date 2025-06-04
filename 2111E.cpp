@@ -16,36 +16,53 @@ static void solve(void)
 		else if (s[i] == 'c') c.insert(i);
 	}
 	char c0, c1;
-	int bc = 0;
+	int bc = 0, cb = 0;
 	while (q--)
 	{
 		std::cin >> c0 >> c1;
-		if (b.size() && c0 == 'b' && c1 == 'a')
+		if (c0 == 'b' && c1 == 'a')
 		{
-			int idx = *b.begin();
-			s[idx] = 'a';
-			b.erase(idx);
+			if ((b.size() && cb == 0) || (cb && b.size() && c.size() && *b.begin() < *c.begin()))
+			{
+				int idx = *b.begin();
+				s[idx] = 'a';
+				b.erase(idx);
+			}
+			else if (c.size() && cb)
+			{
+				int idx = *c.begin();
+				s[idx] = 'a';
+				c.erase(idx);
+				cb--;
+			}
 		}
 		else if (b.size() && c0 == 'b' && c1 == 'c') bc++;
-		else if (c.size() && c0 == 'c' && c1 == 'b')
+		else if (c.size() && c0 == 'c' && c1 == 'b') cb++;
+		else if (c0 == 'c' && c1 == 'a')
 		{
-			int idx = *c.begin();
-			s[idx] = 'b';
-			c.erase(idx);
-			b.insert(idx);
+			if (b.size() && bc && (!c.size() || (c.size() && *b.begin() < *c.begin())))
+			{
+				int idx = *b.begin();
+				s[idx] = 'a';
+				b.erase(idx);
+				bc--;
+			}
+			else if (c.size() && (!bc || (b.size() || *b.begin() > *c.begin())))
+			{
+
+				int idx = *c.begin();
+				s[idx] = 'a';
+				c.erase(idx);
+			}
 		}
-		else if (b.size() && bc && c0 == 'c' && c1 == 'a')
+	}
+	for (char &c : s)
+	{
+		if (!cb) break;
+		if (c == 'c')
 		{
-			int idx = *b.begin();
-			s[idx] = 'a';
-			b.erase(idx);
-			bc--;
-		}
-		else if (c.size() && c0 == 'c' && c1 == 'a')
-		{
-			int idx = *c.begin();
-			s[idx] = 'a';
-			c.erase(idx);
+			c = 'b';
+			cb--;
 		}
 	}
 	std::cout << s << std::endl;
