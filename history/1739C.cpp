@@ -14,7 +14,7 @@ static void solve(void)
 	dp[0][0][2] = 1;
 	for (int i = 0; i <= n / 2; i++)
 	{
-		for (int j = 0; j < n / 2; j++)
+		for (int j = 0; j <= n / 2; j++)
 		{
 			for(int t = 0; t < 3; t++)
 			{
@@ -34,14 +34,6 @@ static void solve(void)
 	}
 	for (int i = 0; i < 3; i++)
 		std::cout << dp[n/2][n/2][i] % M << " ";
-	for (int i = 0; i < 3; i++)
-		std::cout << dp[n/2-1][n/2-1][i] % M << " ";
-	for (int i = 0; i < 3; i++)
-		std::cout << dp[n/2-2][n/2-2][i] % M << " ";
-	for (int i = 0; i < 3; i++)
-		std::cout << dp[n/2-3][n/2-3][i] % M << " ";
-	for (int i = 0; i < 3; i++)
-		std::cout << dp[n/2-4][n/2-4][i] % M << " ";
 	std::cout << std::endl;
 }
 
