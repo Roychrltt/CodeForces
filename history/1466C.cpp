@@ -8,7 +8,24 @@ static void solve(void)
 	std::string s;
 	std::cin >> s;
 	int n = s.size();
-
+	int cnt = 0;
+	std::vector<int> v(n);
+	for (int i = 1; i < n; i++)
+	{
+		bool flag = false;
+		if (!v[i] && !v[i - 1] && s[i] == s[i - 1])
+		{
+			v[i] = 1;
+			flag = true;
+		}
+		if (i > 1 && !v[i] && !v[i - 2] && s[i] == s[i - 2])
+		{
+			v[i] = 1;
+			flag = true;
+		}
+		cnt += flag;
+	}
+	std::cout << cnt << std::endl;
 }
 
 int main()
