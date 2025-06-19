@@ -18,7 +18,8 @@ static void solve(void)
 	for (int i = 0; i < n - 2; i++)
 		std::cin >> xx;
 	std::cin >> b;
-	if (x <= a || x >= b) std::cout << b - a << std::endl;
+	if (x <= a) std::cout << b - x << std::endl;
+	else if (x >= b) std::cout << x - a << std::endl;
 	else
 	{
 		int c = b - x, d = x - a;

@@ -20,48 +20,32 @@ static void solve(void)
 			mx = std::max(mx, x);
 		}
 	}
-	std::vector<std::pair<int, int>> pos;
-	pos.reserve(n * m);
+	int cnt = 0;
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < m; j++)
 		{
 			if (v[i][j] == mx)
 			{
-				pos.push_back({i, j});
+				cnt++;
 				row[i]++;
 				col[j]++;
 			}
 		}
 	}
-	int px = -1, py = -1;
-	int mxx = -1;
+
 	for (int i = 0; i < n; i++)
 	{
-		if (row[i] > mxx)
+		for (int j = 0; j < m; j++)
 		{
-			mxx = row[i];
-			px = i;
+			if (row[i] + col[j] - (v[i][j] == mx) == cnt)
+			{
+				std::cout << mx - 1 << std::endl;
+				return;
+			}
 		}
-	}
-	mxx = -1;
-	for (int i = 0; i < m; i++)
-	{
-		if (col[i] > mxx)
-		{
-			mxx = col[i];
-			py = i;
-		}
-	}
-	for (auto& [a, b] : pos)
-	{
-		if (a != px && b != py)
-		{
-			std::cout << mx << std::endl;
-			return;
-		}
-	}
-	std::cout << mx - 1 << std::endl;
+	}	
+	std::cout << mx << std::endl;
 }
 
 int main()
