@@ -5,9 +5,14 @@
 
 static void solve(void)
 {
-	int n;
-	std::cin >> n;
-		
+	int n, k;
+	std::cin >> n >> k;
+	std::vector<int> l(n), r(n);
+	for (int i = 0; i < n; i++)
+		std::cin >> l[i];
+	for (int i = 0; i < n; i++)
+		std::cin >> r[i];
+
 }
 
 int main()
