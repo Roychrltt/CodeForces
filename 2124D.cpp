@@ -5,24 +5,11 @@
 
 static void solve(void)
 {
-	int n;
-	std::cin >> n;
-	std::vector<int> cnt(n + 1);
+	int n, k;
+	std::cin >> n >> k;
 	for (int i = 0; i < n; i++)
-	{
-		int x;
-		std::cin >> x;
-		cnt[x]++;
-	}
-	int idx = 0;
-	while (idx <= n && cnt[idx])
-		idx++;
-	int s1 = std::accumulate(cnt.begin(), cnt.begin() + idx, 0);
-	for (int i = 0; i <= n; i++)
-	{
+		std::cin >> v[i];
 
-	}	
-	std::cout << std::endl;
 }
 
 int main()

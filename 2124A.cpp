@@ -7,22 +7,21 @@ static void solve(void)
 {
 	int n;
 	std::cin >> n;
-	std::vector<int> cnt(n + 1);
+	std::vector<int> v(n);
 	for (int i = 0; i < n; i++)
+		std::cin >> v[i];
+	int x, y;
+	for (int i = 0; i < n - 1; i++)
 	{
-		int x;
-		std::cin >> x;
-		cnt[x]++;
+		if (v[i] > v[i + 1])
+		{
+			std::cout << "YES" << std::endl;
+			std::cout << 2 << std::endl;
+			std::cout << v[i] << " " << v[i + 1] << std::endl;
+			return;
+		}
 	}
-	int idx = 0;
-	while (idx <= n && cnt[idx])
-		idx++;
-	int s1 = std::accumulate(cnt.begin(), cnt.begin() + idx, 0);
-	for (int i = 0; i <= n; i++)
-	{
-
-	}	
-	std::cout << std::endl;
+	std::cout << "NO" << std::endl;
 }
 
 int main()
