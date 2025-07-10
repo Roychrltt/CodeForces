@@ -12,7 +12,25 @@ static void solve(void)
 		std::cin >> l[i];
 	for (int i = 0; i < n; i++)
 		std::cin >> r[i];
-
+	std::vector<int> rest;
+	long long int ans = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (l[i] < r[i])
+		{
+			ans += r[i];
+			rest.push_back(l[i]);
+		}
+		else
+		{
+			ans += l[i];
+			rest.push_back(r[i]);
+		}
+	}
+	std::sort(rest.begin(), rest.end(), std::greater<>());
+	for (int i = 0; i < k - 1; i++)
+		ans += rest[i];
+	std::cout << ans + 1 << std::endl;
 }
 
 int main()
