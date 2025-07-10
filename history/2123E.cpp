@@ -18,9 +18,18 @@ static void solve(void)
 	while (idx <= n && cnt[idx])
 		idx++;
 	int s1 = std::accumulate(cnt.begin(), cnt.begin() + idx, 0);
+	int s = std::accumulate(cnt.begin(), cnt.end(), 0);
+	int var = s - idx;
+	std::sort(cnt.begin(), cnt.begin() + idx);
 	for (int i = 0; i <= n; i++)
 	{
-
+		if (i <= var)
+		{
+			int p = std::upper_bound(cnt.begin(), cnt.begin() + idx, i) - cnt.begin();
+			std::cout << p + 1 << " ";
+		}
+		else
+			std::cout << idx - i + var + 1 << " ";
 	}	
 	std::cout << std::endl;
 }
