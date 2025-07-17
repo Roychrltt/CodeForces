@@ -5,17 +5,31 @@
 
 static void solve(void)
 {
-	int n;
-	std::cin >> n;
-	
+	long long int n, l, r, k;
+	std::cin >> n >> l >> r >> k;
+	int a = __builtin_clzll(l), b = __builtin_clzll(r);
+	if (a == b)
+	{
+		if (n % 2 == 0)
+			std::cout << -1 << std::endl;
+		else
+			std::cout << l << std::endl;
+	}
+	else
+	{
+		long long int x = (1 << (63 - b));
+		if (n <= 2)
+			std::cout << -1 << std::endl;
+		else if (n % 2 == 0 && k > n - 2)
+			std::cout << x << std::endl;
+		else if (n % 2 == 0)
+			std::cout << l << std::endl;
+		else if (b - a == 1)
+			std::cout << -1 << std::endl;
+		else if
+	}
 }
 
-clz -> same || other
-n -> odd || even
-same && odd(n >= 1) -> l
-same && even -> -1
-other && odd -> 
-other -> even (>= 4) -> l l l ..... bsb bsb
 int main()
 {
 	std::ios::sync_with_stdio(false);
