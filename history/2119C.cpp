@@ -17,8 +17,9 @@ static void solve(void)
 	}
 	else
 	{
-		long long int x = (1 << (63 - b));
-		if (n <= 2)
+		long long int x = (1ll << (64 - a));
+		if (n == 1) std::cout << l << std::endl;
+		else if (n == 2)
 			std::cout << -1 << std::endl;
 		else if (n % 2 == 0 && k > n - 2)
 			std::cout << x << std::endl;
@@ -26,7 +27,7 @@ static void solve(void)
 			std::cout << l << std::endl;
 		else if (b - a == 1)
 			std::cout << -1 << std::endl;
-		else if
+		else std::cout << l << std::endl;
 	}
 }
 
