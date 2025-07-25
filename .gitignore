@@ -2,3 +2,7 @@ a.out
 *.swp
 *.o
 *.txt
+input
+output
+myoutput
+test*
