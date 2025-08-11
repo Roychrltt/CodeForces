@@ -12,20 +12,18 @@ static void solve(void)
 		std::cin >> a[i];
 	for (int i = 0; i < n; i++)
 		std::cin >> b[i];
-	std::vector<int> c = a;
 	if (a[n - 1] != b[n - 1])
 	{
 		std::cout << "NO" << std::endl;
 		return;
 	}
-	for (int i = n - 2; i >= 0; i--)
+	for (int i = 0; i < n - 1; i++)
 	{
-		if (a[i] != b[i] && (a[i] ^ a[i + 1]) != b[i] && (a[i] ^ c[i + 1]) != b[i])
+		if (a[i] != b[i] && (a[i] ^ a[i + 1]) != b[i] && (a[i] ^ b[i + 1]) != b[i])
 		{
 			std::cout << "NO" << std::endl;
 			return;
 		}
-		a[i] = b[i];
 	}
 	std::cout << "YES" << std::endl;
 }
