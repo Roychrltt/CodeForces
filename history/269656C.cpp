@@ -88,7 +88,6 @@ std::vector<int> buildLCP(const std::string &s, const std::vector<int> &sa)
 	return lcp;
 }
 
-
 int log2_floor(unsigned long i)
 {
 	return std::bit_width(i) - 1;
@@ -111,27 +110,44 @@ int main()
 	std::vector<int> lcp = buildLCP(s, sa);
 	int n = lcp.size();
 	int k = log2_floor(n);
-	int st[k + 1][n];
-	std::copy(v.begin(), v.end(), st[0]);
+	std::vector<std::vector<int>> st(k + 1, std::vector<int>(n));
+	std::copy(lcp.begin(), lcp.end(), st[0].begin());
 	for (int i = 1; i <= k; i++)
 		for (int j = 0; j + (1 << i) <= n; j++)
 			st[i][j] = std::min(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
-
-	auto compare = [&](int a, int b, int c, int d) -> bool
+	auto compare = [&](const std::pair<int,int>& p1, const std::pair<int,int>& p2) -> bool
 	{
-		if (rank[a] <= rank[c] && )
+		int a = p1.first  - 1, b = p1.second  - 1;
+		int c = p2.first  - 1, d = p2.second  - 1;
+		int len1 = b - a + 1, len2 = d - c + 1;
+
+		if (a == c) return len1 < len2;
+
+		int ra = rank[a], rc = rank[c];
+		if (ra < rc && len1 < len2) return true;
+		if (ra > rc && len1 > len2) return false;
+		int L = std::min(ra, rc), R = std::max(ra, rc) - 1;
+
+		int least = 0;
+		if (R >= L) {
+			int lg = log2_floor(R - L + 1);
+			least = std::min(st[lg][L], st[lg][R - (1 << lg) + 1]);
+		}
+
+		int common = std::min(least, std::min(len1, len2));
+		if (common >= std::min(len1, len2))
+		{
+			if (len1 != len2) return len1 < len2;
+			return a < c;
+		}
+
+		return s[a + common] < s[c + common];
 	};
+
 	std::vector<std::pair<int, int>> v(q);
 	for (int i = 0; i < q; i++)
 		std::cin >> v[i].first >> v[i].second;
 	std::sort(v.begin(), v.end(), compare);
-	while (q--)
-	{
-		int l, r;
-		std::cin >> l >> r;
-		int i = log2_floor(r - l + 1);
-		int x = std::min(st[i][l], st[i][r - (1 << i) + 1]);
-	}
 
 	for (auto& [a, b] : v) std::cout << a << " " << b << std::endl;
 	__Made in France__
