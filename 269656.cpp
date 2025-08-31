@@ -63,10 +63,35 @@ class SuffixArray {
 	}
 };
 
-// ------------------ This string s is supposed to be appended with a '$' -------------------
 std::vector<int> buildSA(const std::string& s) {
 	SuffixArray sa;
 	return sa.build(s);
+}
+
+std::vector<int> buildLCP(const std::string &s, const std::vector<int> &sa)
+{
+	int n = s.size();
+	std::vector<int> rank(n), lcp(n - 1);
+	for (int i = 0; i < n; ++i)
+		rank[sa[i]] = i;
+
+	int h = 0;
+	for (int i = 0; i < n; ++i)
+	{
+		if (rank[i] == 0) continue;
+		int j = sa[rank[i] - 1];
+		while (i + h < n && j + h < n && s[i + h] == s[j + h])
+			++h;
+		if (rank[i] >= 1) lcp[rank[i] - 1] = h;
+		if (h > 0) --h;
+	}
+	return lcp;
+}
+
+
+int log2_floor(unsigned long i)
+{
+	return std::bit_width(i) - 1;
 }
 
 int main()
@@ -77,9 +102,37 @@ int main()
 	std::string s;
 	std::cin >> s;
 	s += '$';
-	int n;
-	std::cin >> n;
+	int q;
+	std::cin >> q;
 	std::vector<int> sa = buildSA(s);
-	while ()
+	std::vector<int> rank(sa.size());
+	for (int i = 0; i < sa.size(); i++)
+		rank[sa[i]] = i;
+	std::vector<int> lcp = buildLCP(s, sa);
+	int n = lcp.size();
+	int k = log2_floor(n);
+	int st[k + 1][n];
+	std::copy(v.begin(), v.end(), st[0]);
+	for (int i = 1; i <= k; i++)
+		for (int j = 0; j + (1 << i) <= n; j++)
+			st[i][j] = std::min(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
+
+	auto compare = [&](int a, int b, int c, int d) -> bool
+	{
+		if (rank[a] <= rank[c] && )
+	};
+	std::vector<std::pair<int, int>> v(q);
+	for (int i = 0; i < q; i++)
+		std::cin >> v[i].first >> v[i].second;
+	std::sort(v.begin(), v.end(), compare);
+	while (q--)
+	{
+		int l, r;
+		std::cin >> l >> r;
+		int i = log2_floor(r - l + 1);
+		int x = std::min(st[i][l], st[i][r - (1 << i) + 1]);
+	}
+
+	for (auto& [a, b] : v) std::cout << a << " " << b << std::endl;
 	__Made in France__
 }
