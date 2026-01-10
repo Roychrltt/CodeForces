@@ -17,7 +17,7 @@ long long int fastPower(long long int x, long long int p)
 	return res;
 }
 
-static void solve(std::vector<long long int>& fact, std::vector<long long int>& invmod)
+static void solve(std::vector<long long int>& fact, std::vector<long long int>& invfact)
 {
 	int n;
 	std::cin >> n;
@@ -51,7 +51,7 @@ static void solve(std::vector<long long int>& fact, std::vector<long long int>& 
 	
 	for (int i = 0; i <= num; i++)
 	{
-		long long int x = fact[n - cnt] * invmod[i] % MOD * invmod[n - cnt - i] % MOD;
+		long long int x = fact[n - cnt] * invfact[i] % MOD * invfact[n - cnt - i] % MOD;
 		x = x * fact[n - cnt - i] % MOD;
 		x = x * fact[i + cnt - 1] % MOD;
 		x = x * cnt % MOD;
@@ -67,16 +67,16 @@ int main()
 	std::cout.tie(0);
 	int t;
 	std::cin >> t;
-	std::vector<long long int> fact(51), invmod(51);
+	std::vector<long long int> fact(51), invfact(51);
 	fact[1] = fact[0] = 1;
 	for (int i = 2; i < 51; i++)
 		fact[i] = fact[i - 1] * i % MOD;
-	invmod[50] = fastPower(fact[50], MOD - 2);
-	for (int i = 50; i > 0; i--)
-		invmod[i - 1] = invmod[i] * i % MOD;
+	invfact[0] = invfact[1] = 1;
+	for (int i = 2; i < 51; i++)
+		invfact[i] = invfact[i - 1] * fastPower(i, MOD - 2) % MOD;
 	while (t--)
 	{
-		solve(fact, invmod);
+		solve(fact, invfact);
 	}
 	__Made in France__
 }
