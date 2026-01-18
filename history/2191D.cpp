@@ -9,7 +9,24 @@ static void solve(void)
 	std::cin >> n;
 	std::string s;
 	std::cin >> s;
-
+	int last = -1;
+	for (int i = n - 1; i >= 0; i--)
+	{
+		if (s[i] == '(')
+		{
+			last = i;
+			break;
+		}
+	}
+	for (int i = 0; i < last - 1; i++)
+	{
+		if (s[i] == ')' && s[i + 1] == '(')
+		{
+			std::cout << n - 2 << std::endl;
+			return;
+		}
+	}
+	std::cout << -1 << std::endl;
 }
 
 int main()

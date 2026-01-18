@@ -13,7 +13,7 @@ static void solve(void)
 	for (int i = 0; i < n - 1; i++)
 		v[i] = std::abs(v[i + 1] - v[i]);
 	v.back() = 0;
-	std::vector<int> res(n - 1), r(n - 1, n - 1), l(n - 1, -1);
+	std::vector<int> r(n - 1, n - 1), l(n - 1, -1);
 	std::stack<int> s;
 	std::vector<long long int> ans(n);
 	std::vector<std::vector<int>> ma(n);
