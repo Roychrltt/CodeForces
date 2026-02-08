@@ -31,28 +31,15 @@ static void solve(void)
 	int i = 0, j = 0;
 	while (i < n || j < m)
 	{
-		if (i >= n)
+		if (i >= n || (j < m && v[i][j] == -1))
 		{
 			std::cout << 'R';
 			j++;
 		}
-		else if (j >= m)
+		else
 		{
 			std::cout << 'D';
 			i++;
-		}
-		else
-		{
-			if (v[i][j] == -1)
-			{
-				std::cout << 'R';
-				j++;
-			}
-			else
-			{
-				std::cout << 'D';
-				i++;
-			}
 		}
 	}
 	std::cout << std::endl;
