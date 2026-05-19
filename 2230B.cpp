@@ -8,14 +8,14 @@ static void solve(void)
 	std::string s;
 	std::cin >> s;
 	int n = s.length();
-	std::vector<int> cnt(10), last(10), first(10, -1);
+	std::vector<int> cnt(10), last(10), first(10, n + 1);
 	std::vector<int> preodd(n), suf(n);
 	for (int i = 0; i < n; i++)
 	{
 		int x = s[i] - '0';
 		cnt[x]++;
 		last[x] = i;
-		if (first[x] == -1) first[x] = i;
+		first[x] = std::min(first[x], i);
 		preodd[i] = (x & 1);
 		if (i) preodd[i] += preodd[i - 1];
 	}
@@ -30,10 +30,7 @@ static void solve(void)
 		return;
 	}
 	int lastidx = std::max(last[2], last[6]);
-	int firstidx = -1;
-	if (first[2] == -1) firstidx = first[6];
-	else if (first[6] == -1) firstidx = first[2];
-	else firstidx = std::min(first[2], first[6]);
+	int firstidx = std::min(first[2], first[6]);
 	extra = std::min(extra, preodd[lastidx] + suf[firstidx]);
 	std::cout << ans + extra << std::endl;
 }
